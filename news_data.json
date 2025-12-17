@@ -13,6 +13,4 @@
     "link": "./blogs/251116.html",
     "link_text": "Click here for details"
   } 
-  // ... and perhaps a missing comma before the next item starts, 
-  // or a comma here if this is the last item but the parser expects more.
 ]

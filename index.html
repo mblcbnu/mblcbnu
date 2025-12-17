@@ -12,13 +12,18 @@
             background-color: #f7f7f7;
         }
         .lab-color {
-            color: #0d47a1;
+            color: #0d47a1; /* Deep Blue */
         }
         .lab-bg {
             background-color: #0d47a1;
         }
         .nav-link:hover {
-            color: #1e88e5;
+            color: #1e88e5; /* Lighter Blue for hover */
+        }
+        .active-link {
+            color: #1e88e5; /* Active link color */
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.25rem;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
@@ -33,25 +38,8 @@
     </style>
 </head>
 <body class="text-gray-800 leading-relaxed">
-
-    <header class="shadow-md bg-white sticky top-0 z-10 border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="lab-color tracking-tight flex items-center space-x-2">
-                        <img src="./MBLLOGO4.png" alt="Microbiome Lab Logo" class="h-8 w-auto">
-                        <span class="text-2xl font-extrabold text-gray-800">Microbiome Lab</span>
-                    </a>
-                </div>
-                <nav class="hidden md:flex space-x-6 text-base font-medium">
-                    <a href="#home" class="nav-link lab-color transition duration-150 ease-in-out">Home</a>
-                    <a href="research.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Research</a>
-                    <a href="people.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">People</a>
-                    <a href="publications.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Publications</a>
-                    <a href="blogs/blog.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Blog</a>
-                </nav>
-            </div>
-        </div>
+    <!-- Header remains empty, ready to receive the navigation content from nav.html -->
+	<header id="main-nav" class="shadow-md bg-white sticky top-0 z-10 border-b border-gray-200">
     </header>
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -60,6 +48,7 @@
             <div class="flex items-start flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-10">
                 
                 <div class="flex-shrink-0">
+                    <!-- Note: Image path corrected to be relative -->
                     <img src="./MBLLOGO4.png" alt="Microbiome Lab Logo" class="h-28 w-auto rounded-lg shadow-xl border-4 border-gray-300">
                 </div>
 
@@ -118,11 +107,50 @@
     </footer>
     
     <script>
+        // Function to load the external navigation HTML
+	    async function loadNavbar() {
+            try {
+                // Fetch the navigation HTML from the separate file
+                const response = await fetch('./nav.html');
+                if (!response.ok) throw new Error('Navigation file (nav.html) not found.');
+                
+                const data = await response.text();
+                const navContainer = document.getElementById('main-nav');
+                navContainer.innerHTML = data;
+
+                // After loading the content, set up the mobile menu toggle
+                const mobileMenuButton = navContainer.querySelector('#mobile-menu-button');
+                const mobileMenu = navContainer.querySelector('#mobile-menu');
+                
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Set active link based on current page path
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                const links = navContainer.querySelectorAll('.nav-link');
+                
+                links.forEach(link => {
+                    const linkPath = link.getAttribute('href').split('/').pop() || 'index.html';
+                    if (linkPath === currentPath) {
+                        link.classList.add('active-link');
+                        link.classList.remove('text-gray-600', 'hover:lab-color'); // Ensure gray is removed
+                    }
+                });
+
+
+            } catch (error) {
+                console.error("Error loading navigation:", error);
+            }
+        }
+
+
+        // Function to load news data (existing function, slightly cleaner error handling)
         async function loadNews() {
             const newsListDiv = document.getElementById('news-list');
             
             try {
-                const response = await fetch('./news_data.json'); // FIX: 명시적 상대 경로 './' 추가
+                const response = await fetch('./news_data.json'); 
                 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch news data: ${response.statusText}`);
@@ -130,50 +158,35 @@
                 
                 const newsData = await response.json();
                 
-                newsListDiv.innerHTML = '';
+                // Use a modern loop and template literals for cleaner code
+                newsListDiv.innerHTML = newsData.map(item => `
+                    <div class="border-b pb-4">
+                        <span class="text-sm font-semibold ${item.color} block">${item.date}</span>
+                        <p class="text-lg font-medium text-gray-800 mt-1">
+                            <span class="lab-color font-bold mr-2">${item.title_tag}</span>
+                            ${item.content}
+                        </p>
+                        ${item.link && item.link_text ? 
+                            `<a href="${item.link}" target="_blank" class="text-blue-500 hover:underline text-sm block mt-1">${item.link_text}</a>` 
+                            : ''
+                        }
+                    </div>
+                `).join('');
 
-                newsData.forEach(item => {
-                    const newsItemDiv = document.createElement('div');
-                    
-                    const dateSpan = document.createElement('span');
-                    dateSpan.className = `text-sm font-semibold ${item.color} block`;
-                    dateSpan.textContent = item.date;
-                    newsItemDiv.appendChild(dateSpan);
-                    
-                    const contentP = document.createElement('p');
-                    contentP.className = 'text-lg font-medium text-gray-800 mt-1';
-                    
-                    const titleTagSpan = document.createElement('span');
-                    titleTagSpan.className = 'lab-color font-bold mr-2';
-                    titleTagSpan.textContent = item.title_tag;
-                    contentP.appendChild(titleTagSpan);
-                    
-                    contentP.innerHTML += item.content;
-                    
-                    newsItemDiv.appendChild(contentP);
-                    
-                    if (item.link && item.link_text) {
-                        const linkA = document.createElement('a');
-                        linkA.href = item.link;
-                        linkA.target = "_blank";
-                        linkA.className = 'text-blue-500 hover:underline text-sm block mt-1';
-                        linkA.textContent = item.link_text;
-                        newsItemDiv.appendChild(linkA);
-                    }
-
-                    newsListDiv.appendChild(newsItemDiv);
-                });
 
             } catch (error) {
                 console.error("Error loading news:", error);
-                newsListDiv.innerHTML = `<p class="text-red-600">Error: Could not load news updates. Please check the 'news_data.json' file. (${error.message})</p>`;
+                newsListDiv.innerHTML = `<p class="text-red-600">Error: Could not load news updates. Please check the 'news_data.json' file.</p>`;
             }
         }
 
-        window.onload = loadNews;
-
-        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+        // --- THE CRITICAL FIX ---
+        // Use DOMContentLoaded to ensure both functions run safely once the page structure is available.
+        window.addEventListener('DOMContentLoaded', () => {
+            loadNavbar();
+            loadNews();
         });
+
     </script>
 
 </body>

@@ -20,30 +20,26 @@
         .nav-link:hover {
             color: #1e88e5; /* Lighter blue on hover */
         }
+        .active-link {
+            color: #1e88e5; /* Active link color */
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.25rem;
+        }
+        .sidebar {
+            /* Make sidebar sticky on large screens */
+            position: sticky;
+            top: 6rem; /* Adjust based on header height */
+            align-self: flex-start; /* Ensures it sticks to the top of its grid area */
+        }
     </style>
 </head>
 <body class="text-gray-800 leading-relaxed">
 
-    <!-- 1. Header and Navigation (Note: Links back to root use ../) -->
-    <header class="shadow-md bg-white sticky top-0 z-10 border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Lab Logo -->
-                <div class="flex-shrink-0">
-                    <a href="../index.html" class="lab-color tracking-tight flex items-center space-x-2">
-                        <img src="../MBLLOGO4.png" alt="Microbiome Lab Logo" class="h-8 w-auto">
-                        <span class="text-2xl font-extrabold text-gray-800">Microbiome Lab</span>
-                    </a>
-                </div>
-                <!-- Navigation Links -->
-                <nav class="hidden md:flex space-x-6 text-base font-medium">
-                    <a href="../index.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Home</a>
-                    <a href="../research.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Research</a>
-                    <a href="../people.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">People</a>
-                    <a href="../publications.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Publications</a>
-                    <a href="#" class="nav-link lab-color transition duration-150 ease-in-out font-bold border-b-2 border-current">Blog</a> <!-- Active Link -->
-                </nav>
-            </div>
+    <!-- 1. Header is now an empty container for the external nav.html -->
+    <header id="main-nav" class="shadow-md bg-white sticky top-0 z-10 border-b border-gray-200">
+        <!-- Temporary message while loading -->
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+             <p class="text-gray-400 italic">Loading Navigation...</p>
         </div>
     </header>
 
@@ -51,34 +47,51 @@
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         <h1 class="text-4xl font-extrabold lab-color mb-8 border-b pb-3">Lab Blog & Insights</h1>
-
-        <section id="blog-posts" class="space-y-6">
+        
+        <!-- Responsive Grid Layout: Sidebar (1 column) and Content (3 columns) -->
+        <div id="blog-layout-grid" class="grid grid-cols-1 lg:grid-cols-4 gap-10">
             
-            <p class="text-lg text-gray-600 mb-6">
-                This space is dedicated to informal updates, scientific commentaries, and laboratory life.
-            </p>
+            <!-- Left Panel / Sidebar for Links (1/4 width on large screens) -->
+            <aside id="sidebar" class="lg:col-span-1 sidebar">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-400">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Recent Posts</h3>
+                    <nav>
+                        <ul class="space-y-3">
+                            
+                            <!-- Link: Home coming day in Jeju -->
+                            <li>
+                                <a href="./blogs/251116.html" onclick="loadPost(event, this.href)" 
+                                   class="blog-link block text-sm text-gray-700 hover:text-red-600 transition duration-150 ease-in-out p-2 rounded-lg hover:bg-gray-50">
+                                    <span class="font-medium text-red-600">Home coming day in Jeju:</span>
+                                    <span class="block text-xs text-gray-500">Nov 16, 2025</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
 
-            <!-- Placeholder Blog Post 1 -->
-            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-400">
-                <h3 class="text-2xl font-bold text-gray-800 mb-2">Decoding the ARGs: A New Workflow</h3>
-                <p class="text-sm text-gray-500 mb-3">Posted by Dr. Unno on December 1, 2025</p>
-                <p class="text-gray-700">
-                    We successfully implemented the new high-performance computing pipeline for antibiotic resistance gene (ARG) tracking this week. This upgrade significantly cuts down our analysis time and improves detection sensitivity across complex metagenomic samples.
+            <!-- Main Blog Content Area (3/4 width on large screens) -->
+            <section id="blog-posts" class="lg:col-span-3 space-y-6">
+                
+                <p id="intro-text" class="text-lg text-gray-600 mb-6">
+                    This space is dedicated to informal updates, scientific commentaries, and laboratory life.
                 </p>
-                <a href="#" class="mt-3 inline-block text-sm font-semibold text-blue-500 hover:underline">Continue Reading &rarr;</a>
-            </div>
+                
+                <!-- Placeholder for the Jeju Homecoming Day Post Link -->
+                <div id="post-preview-251116" class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Home coming day in Jeju</h3>
+                    <p class="text-sm text-gray-500 mb-3">Posted on November 16, 2025</p>
+                    <p class="text-gray-700">
+                        Alumni and current lab members gathered in Jeju. We also participated in a Marathon and had small symposium later on.
+                    </p>
+                    <a href="./blogs/251116.html" onclick="loadPost(event, this.href)" 
+                       class="blog-link mt-3 inline-block text-sm font-semibold text-red-500 hover:underline">Click here for details &rarr;</a>
+                </div>
 
-            <!-- Placeholder Blog Post 2 -->
-            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-gray-300">
-                <h3 class="text-2xl font-bold text-gray-800 mb-2">Student Spotlight: Geon Choi's Ph.D. Work</h3>
-                <p class="text-sm text-gray-500 mb-3">Posted by Nyongjin Chun on November 15, 2025</p>
-                <p class="text-gray-700">
-                    Geon presented compelling preliminary data on microbial source tracking (MST) methods at the weekly lab meeting. His machine learning approach promises higher accuracy in identifying the origin of fecal contamination in our river samples.
-                </p>
-                <a href="#" class="mt-3 inline-block text-sm font-semibold text-blue-500 hover:underline">Continue Reading &rarr;</a>
-            </div>
-
-        </section>
+            </section>
+        </div>
 
     </main>
 
@@ -88,5 +101,118 @@
             <p>&copy; 2025 Microbiome Lab. All rights reserved.</p>
         </div>
     </footer>
+    
+    <!-- JavaScript for dynamic content loading and navigation -->
+    <script>
+        // Store initial classes for resetting (though they won't be modified anymore)
+        const INITIAL_GRID_CLASSES = 'grid grid-cols-1 lg:grid-cols-4 gap-10';
+        const INITIAL_SECTION_CLASSES = 'lg:col-span-3 space-y-6';
+
+        // Function to dynamically load and display a blog post
+        async function loadPost(event, url) {
+            event.preventDefault(); // Stop the browser from navigating
+            
+            const blogPostsSection = document.getElementById('blog-posts');
+            
+            // 1. Show loading state
+            blogPostsSection.innerHTML = `
+                <div class="text-center py-20">
+                    <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    <p class="mt-4 text-gray-500">Loading post content...</p>
+                </div>
+            `;
+
+            try {
+                // 2. Fetch the content of the full blog post HTML file
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to load post: ${response.statusText}`);
+                }
+                const htmlText = await response.text();
+
+                // 3. Parse the fetched HTML to extract the main article content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+
+                // The article content was previously created inside a div with class 'blog-container'
+                const articleContent = doc.querySelector('.blog-container');
+
+                if (articleContent) {
+                    // 4. *** CRITICAL CHANGE: Layout structure is MAINTAINED (sidebar stays visible) ***
+                    // The grid and sidebar elements are NOT modified/hidden.
+                    
+                    // 5. Update main content section with the article HTML
+                    // We remove the outer padding/margin from the fetched content container 
+                    // and apply centering classes (max-w-4xl mx-auto) directly to the inner content
+                    // which centers it within the lg:col-span-3 area.
+                    articleContent.classList.remove('blog-container', 'p-6', 'sm:p-10', 'md:p-12', 'rounded-xl');
+                    articleContent.classList.add('max-w-4xl', 'mx-auto', 'w-full', 'p-8', 'bg-white', 'rounded-xl', 'shadow-lg'); 
+                    
+                    // Clear the loading state and insert the full post content
+                    blogPostsSection.innerHTML = articleContent.outerHTML;
+                    
+                } else {
+                     blogPostsSection.innerHTML = `<div class="p-8 text-center bg-red-100 text-red-700 rounded-lg max-w-lg mx-auto">Error: Could not find the main article content container in the linked file (${url}).</div>`;
+                }
+                
+                // 6. Scroll to top of the content area
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error("Post loading error:", error);
+                blogPostsSection.innerHTML = `<div class="p-8 text-center bg-red-100 text-red-700 rounded-lg max-w-lg mx-auto">Failed to load post content. Please check console for details.</div>`;
+            }
+        }
+        
+        // Function to load the main navigation bar
+        async function loadNavbar() {
+            const navContainer = document.getElementById('main-nav');
+            try {
+                const response = await fetch('nav.html'); 
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Error ${response.status}: Failed to fetch 'nav.html'.`);
+                }
+                
+                const data = await response.text();
+                navContainer.innerHTML = data; 
+
+                // Setup mobile menu toggle
+                const mobileMenuButton = navContainer.querySelector('#mobile-menu-button');
+                const mobileMenu = navContainer.querySelector('#mobile-menu');
+                
+                if (mobileMenuButton && mobileMenu) {
+                    mobileMenuButton.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+                }
+
+                // Set active link
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                const links = navContainer.querySelectorAll('.nav-link');
+                
+                links.forEach(link => {
+                    const linkPath = link.getAttribute('href').split('/').pop() || 'index.html';
+                    if (linkPath === currentPath) {
+                        link.classList.add('active-link');
+                        link.classList.remove('text-gray-600', 'hover:lab-color');
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error loading navigation. If you see a CORS error, run this using a local web server (e.g., Live Server).", error);
+                navContainer.innerHTML = `
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+                        <p class="text-red-500">Error loading navigation: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadNavbar();
+        });
+    </script>
+
 </body>
 </html>

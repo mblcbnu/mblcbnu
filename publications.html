@@ -23,6 +23,11 @@
         .nav-link:hover {
             color: #1e88e5; /* Lighter blue on hover */
         }
+        .active-link {
+            color: #1e88e5; /* Active link color */
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.25rem;
+        }
         .pub-item {
             margin-bottom: 1.5rem;
             padding: 1rem;
@@ -52,27 +57,11 @@
 </head>
 <body class="text-gray-800 leading-relaxed">
 
-    <!-- 1. Header and Navigation (Identical to other pages) -->
-    <header class="shadow-md bg-white sticky top-0 z-10 border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Lab Logo -->
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="lab-color tracking-tight flex items-center space-x-2">
-                        <img src="./MBLLOGO4.png" alt="Microbiome Lab Logo" class="h-8 w-auto">
-                        <span class="text-2xl font-extrabold text-gray-800">Microbiome Lab</span>
-                    </a>
-                </div>
-                <!-- Navigation Links -->
-                <nav class="hidden md:flex space-x-6 text-base font-medium">
-                    <a href="index.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Home</a>
-                    <a href="research.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Research</a>
-                    <a href="people.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">People</a>
-                    <a href="#" class="nav-link lab-color transition duration-150 ease-in-out font-bold border-b-2 border-current">Publications</a> <!-- Active Link -->
-                    <a href="blogs/blog.html" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Blogs</a>
-
-                </nav>
-            </div>
+    <!-- 1. Header is now an empty container for the external nav.html -->
+    <header id="main-nav" class="shadow-md bg-white sticky top-0 z-10 border-b border-gray-200">
+        <!-- Temporary message while loading -->
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+             <p class="text-gray-400 italic">Loading Navigation...</p>
         </div>
     </header>
 
@@ -513,7 +502,7 @@
                 </div>
                 <div class="pub-item">
                     <p class="text-gray-800">
-                        <a href="https://link.springer.com/article/10.1007%2Fs12275-018-8195-z" target="_blank" class="pub-title hover:underline">
+                        <a href="https://link.springer.com/article/10.1007/s12275-018-8195-z" target="_blank" class="pub-title hover:underline">
                             Metagenomic analysis reveals the prevalence and persistence of antibiotic- and heavy metal-resistance genes in wastewater treatment plant
                         </a>, <span class="pub-journal">Journal of Microbiology</span>
                         <span class="pub-authors">Sachin Kumar Gupta, Hanseob Shin, Dukki Han, Hor-Gil Hur, and Tatsuya Unno*</span>
@@ -834,9 +823,57 @@
         </div>
     </footer>
     
+    <!-- JavaScript for dynamic navigation loading -->
     <script>
-        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-            // Mobile menu button is only in the template structure for completeness
+        async function loadNavbar() {
+            const navContainer = document.getElementById('main-nav');
+            try {
+                // Fetch the navigation HTML from the separate file
+                const response = await fetch('./nav.html');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Error ${response.status}: Failed to fetch './nav.html'. Check if the file exists.`);
+                }
+                
+                const data = await response.text();
+                navContainer.innerHTML = data; // Inject the content
+
+                // After loading the content, set up the mobile menu toggle
+                const mobileMenuButton = navContainer.querySelector('#mobile-menu-button');
+                const mobileMenu = navContainer.querySelector('#mobile-menu');
+                
+                if (mobileMenuButton && mobileMenu) {
+                    mobileMenuButton.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+                }
+
+                // Set active link based on current page path
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                const links = navContainer.querySelectorAll('.nav-link');
+                
+                links.forEach(link => {
+                    // Normalize the link path (e.g., './publications.html' -> 'publications.html')
+                    const linkPath = link.getAttribute('href').split('/').pop() || 'index.html';
+                    if (linkPath === currentPath) {
+                        link.classList.add('active-link');
+                        link.classList.remove('text-gray-600', 'hover:lab-color');
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error loading navigation. If you see a CORS error, run this using a local web server (e.g., Live Server).", error);
+                navContainer.innerHTML = `
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+                        <p class="text-red-500">Error loading navigation: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Use DOMContentLoaded to ensure the function runs safely once the page structure is available.
+        window.addEventListener('DOMContentLoaded', () => {
+            loadNavbar();
         });
     </script>
 

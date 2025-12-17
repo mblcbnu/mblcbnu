@@ -1,1 +1,292 @@
-Hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microbiome Lab (MBL) @ CBNU | Molecular Biology Lab Homepage</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font and set up dark/light mode -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light neutral background inspired by Unno Lab */
+        }
+        /* Custom class for the main lab color (a deep blue/teal for academic look) */
+        .lab-color {
+            color: #0d47a1; /* Deep Blue */
+        }
+        .lab-bg {
+            background-color: #0d47a1;
+        }
+        .section-header {
+            font-weight: 700;
+            border-left: 5px solid #0d47a1;
+            padding-left: 1rem;
+        }
+        .nav-link:hover {
+            color: #1e88e5; /* Lighter blue on hover */
+        }
+    </style>
+</head>
+<body class="text-gray-800 leading-relaxed">
+
+    <!-- 1. Header and Navigation -->
+    <header class="shadow-sm bg-white sticky top-0 z-10 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Lab Name / Logo - REPLACED WITH IMAGE -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="lab-color tracking-tight">
+                        <img src="./MBL LOGO4.png" alt="Microbiome Lab (MBL) @ CBNU Logo" class="h-10 w-auto">
+                    </a>
+                </div>
+                <!-- Navigation Links (Hidden on small screens, shown in dropdown) -->
+                <nav class="hidden md:flex space-x-8 text-lg font-medium">
+                    <a href="#home" class="nav-link lab-color transition duration-150 ease-in-out">Home</a>
+                    <a href="#research" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Research</a>
+                    <a href="#people" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">People</a>
+                    <a href="#publications" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Publications</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:lab-color transition duration-150 ease-in-out">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-4 py-2 text-base font-medium lab-color bg-blue-50 hover:bg-blue-100">Home</a>
+                <a href="#research" class="block px-4 py-2 text-base font-medium text-gray-600 hover:lab-color hover:bg-gray-100">Research</a>
+                <a href="#people" class="block px-4 py-2 text-base font-medium text-gray-600 hover:lab-color hover:bg-gray-100">People</a>
+                <a href="#publications" class="block px-4 py-2 text-base font-medium text-gray-600 hover:lab-color hover:bg-gray-100">Publications</a>
+                <a href="#contact" class="block px-4 py-2 text-base font-medium text-gray-600 hover:lab-color hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Section: Welcome / Hero -->
+        <section id="home" class="bg-white rounded-xl shadow-lg p-8 sm:p-12 mb-12 border-t-4 lab-bg">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4">
+                Welcome to the Microbiome Lab (MBL) @ CBNU Research Group
+            </h1>
+            <p class="text-lg text-gray-100">
+                We are the Microbiome Lab (MBL) at Chungbuk National University (CBNU). Our research focuses on microbial pathogenesis, host-pathogen interactions, and the development of novel diagnostic tools using advanced molecular techniques.
+            </p>
+            <div class="mt-6 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#research" class="bg-white lab-color font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-150 text-center">
+                    Explore Our Research
+                </a>
+                <a href="#people" class="text-white border-2 border-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-white hover:lab-color transition duration-150 text-center">
+                    Meet the Team
+                </a>
+            </div>
+        </section>
+
+        <!-- Section: News and Updates (Two-column layout on desktop) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+
+            <!-- NEWS & UPDATES (Left Column - 2/3 width on desktop) -->
+            <section class="lg:col-span-2 bg-white rounded-xl shadow-lg p-8">
+                <h2 id="news" class="text-3xl section-header lab-color mb-6">Latest News & Highlights</h2>
+                
+                <ul class="space-y-6">
+                    <!-- News Item 1 -->
+                    <li class="border-b pb-4">
+                        <span class="text-sm font-semibold text-red-600 block">October 20, 2025</span>
+                        <h3 class="text-xl font-semibold lab-color mt-1">
+                            Dr. Kim receives NIH grant for RNA-seq analysis of bacterial persistence.
+                        </h3>
+                        <p class="text-gray-600 text-sm mt-1">
+                            We are excited to announce a new 3-year grant from the National Institutes of Health to study the mechanisms underlying antibiotic resistance in *E. coli*.
+                        </p>
+                    </li>
+                    <!-- News Item 2 -->
+                    <li class="border-b pb-4">
+                        <span class="text-sm font-semibold text-green-600 block">September 15, 2025</span>
+                        <h3 class="text-xl font-semibold lab-color mt-1">
+                            Paper Published in Nature Microbiology!
+                        </h3>
+                        <p class="text-gray-600 text-sm mt-1">
+                            Our work on novel biofilm disruptors, "Title of Paper Here," is officially published. Congratulations to lead author Jane Doe! <a href="#" class="text-blue-500 hover:underline">Read the paper here.</a>
+                        </p>
+                    </li>
+                    <!-- News Item 3 -->
+                    <li class="pb-4">
+                        <span class="text-sm font-semibold text-gray-500 block">August 1, 2025</span>
+                        <h3 class="text-xl font-semibold lab-color mt-1">
+                            Welcome new graduate students!
+                        </h3>
+                        <p class="text-gray-600 text-sm mt-1">
+                            A warm welcome to Minho and Jisoo, who are joining the lab to pursue their master's degrees in cell signaling.
+                        </p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- IMPORTANT LINKS (Right Column - 1/3 width on desktop) -->
+            <section class="lg:col-span-1 space-y-4">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold lab-color mb-4 border-b pb-2">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#publications" class="hover:text-blue-500 transition duration-150 block">Full Publication List</a></li>
+                        <li><a href="#" class="hover:text-blue-500 transition duration-150 block">Open Positions</a></li>
+                        <li><a href="#" class="hover:text-blue-500 transition duration-150 block">Lab Protocols (Internal Link)</a></li>
+                        <li><a href="#" class="hover:text-blue-500 transition duration-150 block">Visit CBNU Website</a></li>
+                    </ul>
+                </div>
+                <!-- Mini Contact Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold lab-color mb-4 border-b pb-2">Contact PI</h3>
+                    <p class="text-gray-600">Dr. [PI's Last Name]</p>
+                    <p class="text-sm text-gray-500 mt-1">
+                        <a href="mailto:PI@cbnu.ac.kr" class="text-blue-500 hover:underline">PI@cbnu.ac.kr</a><br>
+                        Office: 043-123-4567
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Section: Research Areas -->
+        <section id="research" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl section-header lab-color mb-8">Core Research Areas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Research Card 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-blue-400 shadow-md">
+                    <h3 class="text-2xl font-semibold lab-color mb-3">Host-Pathogen Interactions</h3>
+                    <p class="text-gray-600 text-sm" id="research-area-1">
+                        Investigating the molecular mechanisms used by bacteria to evade the host immune system, focusing on signaling pathways and virulence factors.
+                    </p>
+                </div>
+                
+                <!-- Research Card 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-blue-400 shadow-md">
+                    <h3 class="text-2xl font-semibold lab-color mb-3">RNA-Seq and Genomics</h3>
+                    <p class="text-gray-600 text-sm" id="research-area-2">
+                        Applying next-generation sequencing and bioinformatics to analyze transcriptomes, identify biomarkers, and predict antibiotic resistance profiles.
+                    </p>
+                </div>
+
+                <!-- Research Card 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-blue-400 shadow-md">
+                    <h3 class="text-2xl font-semibold lab-color mb-3">Biofilm Dynamics</h3>
+                    <p class="text-gray-600 text-sm" id="research-area-3">
+                        Study of bacterial community structures (biofilms) and discovery of novel compounds or enzymes capable of disrupting these protective layers.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: People Placeholder -->
+        <section id="people" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl section-header lab-color mb-6">Our Team</h2>
+            <p class="text-gray-600 mb-4">
+                The Microbiome Lab (MBL) @ CBNU is composed of passionate researchers dedicated to solving fundamental problems in microbial biology. This page will link to individual profiles and CVs.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <!-- PI -->
+                <div class="p-4 rounded-lg bg-blue-50 shadow-md">
+                    <img src="https://placehold.co/100x100/CCCCCC/333333?text=PI" alt="PI Photo" class="rounded-full w-20 h-20 mx-auto mb-2 border-2 border-blue-400">
+                    <p class="font-bold lab-color">Dr. [First Name] [Last Name]</p>
+                    <p class="text-sm text-gray-500">Principal Investigator</p>
+                </div>
+                <!-- Post-Doc -->
+                <div class="p-4 rounded-lg bg-gray-50 shadow-md">
+                    <img src="https://placehold.co/100x100/AAAAAA/333333?text=PD" alt="Postdoc Photo" class="rounded-full w-20 h-20 mx-auto mb-2 border-2 border-gray-300">
+                    <p class="font-bold text-gray-800">Jane Doe</p>
+                    <p class="text-sm text-gray-500">Postdoctoral Fellow</p>
+                </div>
+                <!-- Student 1 -->
+                <div class="p-4 rounded-lg bg-gray-50 shadow-md">
+                    <img src="https://placehold.co/100x100/AAAAAA/333333?text=GS1" alt="Student Photo" class="rounded-full w-20 h-20 mx-auto mb-2 border-2 border-gray-300">
+                    <p class="font-bold text-gray-800">Minho Kim</p>
+                    <p class="text-sm text-gray-500">Ph.D. Candidate</p>
+                </div>
+                <!-- Student 2 -->
+                <div class="p-4 rounded-lg bg-gray-50 shadow-md">
+                    <img src="https://placehold.co/100x100/AAAAAA/333333?text=GS2" alt="Student Photo" class="rounded-full w-20 h-20 mx-auto mb-2 border-2 border-gray-300">
+                    <p class="font-bold text-gray-800">Jisoo Park</p>
+                    <p class="text-sm text-gray-500">Master's Student</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section: Publications Placeholder -->
+        <section id="publications" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl section-header lab-color mb-6">Publications</h2>
+            <p class="text-gray-600 mb-4">
+                Our full publication list is automatically generated from our BibTeX file on GitHub. Here are the latest highlights:
+            </p>
+            <div class="space-y-4 text-sm">
+                <div class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50">
+                    <p class="font-semibold lab-color">Kim, J., Park, M., & Lee, S. (2025). The role of microRNA-123 in bacterial immune evasion. *Nature Microbiology*, 9(11), 1234-1245.
+                    </p>
+                    <a href="#" class="text-blue-500 hover:underline text-xs mt-1 block">DOI: 10.1038/s41564-025-01234-x</a>
+                </div>
+                 <div class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50">
+                    <p class="font-semibold lab-color">Doe, J., & Smith, A. (2024). A novel computational approach to predict pathogenicity. *Bioinformatics*, 40(5), btad123.
+                    </p>
+                    <a href="#" class="text-blue-500 hover:underline text-xs mt-1 block">DOI: 10.1093/bioinformatics/btad123</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Contact -->
+        <section id="contact" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl section-header lab-color mb-6">Location & Contact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold lab-color mb-3">Our Location</h3>
+                    <p class="text-gray-600">
+                        Chungbuk National University<br>
+                        College of Life Sciences<br>
+                        Building 2, Room 405<br>
+                        Cheongju-si, Chungcheongbuk-do, South Korea
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold lab-color mb-3">Get in Touch</h3>
+                    <p class="text-gray-600">
+                        For general inquiries, please email the lab manager:
+                    </p>
+                    <a href="mailto:manager@cbnu.ac.kr" class="text-blue-500 hover:underline font-medium mt-1 block">manager@cbnu.ac.kr</a>
+                    <p class="text-gray-600 mt-4">
+                        We are always looking for passionate researchers. Check our <a href="#" class="text-blue-500 hover:underline">Open Positions</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2025 Microbiome Lab (MBL) @ CBNU. Powered by GitHub Pages and the <a href="https://github.com/alshedivat/al-folio" class="text-blue-300 hover:text-blue-100">al-folio</a> inspired design.</p>
+            <p class="mt-2 text-gray-400">Last updated: December 2025</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        // Mobile menu toggle script
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

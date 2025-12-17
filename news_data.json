@@ -1,0 +1,48 @@
+[
+  {
+    "date": "December 17, 2025",
+    "color": "text-blue-600",
+    "title_tag": "PI Seminar:",
+    "content": "Dr. Tatsuya Unno will be giving a keynote speech on marine microbiome data processing at the Seoul Bioinformatics Summit.",
+    "link": "http://seoul-bio-summit.org/keynote",
+    "link_text": "View Keynote Details"
+  },
+  {
+    "date": "November 1, 2025",
+    "color": "text-red-600",
+    "title_tag": "New Grant Awarded:",
+    "content": "Dr. Kim secures funding to investigate novel anti-biofilm strategies using computational modeling."
+  },
+  {
+    "date": "October 15, 2025",
+    "color": "text-green-600",
+    "title_tag": "Publication:",
+    "content": "Our paper on *E. coli* virulence factor regulation is now out in the Journal of Bacteriology.",
+    "link": "#",
+    "link_text": "Read the abstract here."
+  },
+  {
+    "date": "September 20, 2025",
+    "color": "text-gray-500",
+    "title_tag": "Lab Event:",
+    "content": "We welcomed two new Master's students, Minho and Jisoo, to the team!"
+  },
+  {
+    "date": "September 1, 2025",
+    "color": "text-red-600",
+    "title_tag": "Conference Presentation:",
+    "content": "Dr. [PI's Last Name] presented new genomics data at the International Microbial Symposium."
+  },
+  {
+    "date": "August 10, 2025",
+    "color": "text-green-600",
+    "title_tag": "Paper Accepted:",
+    "content": "Postdoc Jane Doe's review on host-pathogen signaling has been accepted by *Cell Host & Microbe*."
+  },
+  {
+    "date": "July 15, 2025",
+    "color": "text-gray-500",
+    "title_tag": "Fieldwork Complete:",
+    "content": "The team successfully concluded the annual sample collection trip in the Cheongju area."
+  }
+]

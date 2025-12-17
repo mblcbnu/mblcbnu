@@ -106,9 +106,10 @@
             <!-- End Scroll Container -->
         </section>
 
-        <!-- Quick Contact / Location -->
-        <section id="contact-info" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-400">
+        <!-- Quick Contact / Location: Adjusted to md:grid-cols-5 for 40%/60% split -->
+        <section id="contact-info" class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+            <!-- Principal Investigator (40% width on desktop - col-span-2) -->
+            <div class="md:col-span-2 bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-400">
                 <h3 class="text-2xl font-semibold lab-color mb-3">Principal Investigator</h3>
                 <p class="text-gray-700">Dr. Tatsuya Unno</p>
                 <p class="text-gray-500 text-sm mt-1">
@@ -116,7 +117,8 @@
                     Office: 043-261-2304
                 </p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-400">
+            <!-- Physical Address (60% width on desktop - col-span-3) -->
+            <div class="md:col-span-3 bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-400">
                 <h3 class="text-2xl font-semibold lab-color mb-3">Physical Address</h3>
                 <p class="text-gray-700">
                     Department of Microbiology<br>

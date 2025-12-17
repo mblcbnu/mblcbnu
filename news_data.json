@@ -1,10 +1,11 @@
+
 [
   {
     "date": "December 17, 2025",
     "color": "text-blue-600",
     "title_tag": "Lab Homepage renewal:",
     "content": "Lab homepage is moved to github which is advertisement free!"
-  },
+  }, 
   {
     "date": "November 16, 2025",
     "color": "text-red-600",
@@ -12,5 +13,7 @@
     "content": "Allumni and current lab members gathered in Jeju. We also pariticipated in Marathon and had small symposium later on.",
     "link": "blogs/251116.html",
     "link_text": "Click for Details"
-  }
+  } 
+  // ... and perhaps a missing comma before the next item starts, 
+  // or a comma here if this is the last item but the parser expects more.
 ]
